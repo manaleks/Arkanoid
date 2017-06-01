@@ -56,3 +56,14 @@ C:\Users\Дом\Desktop\Арка\Клиент\ArkanoidLast\obj\x86\Debug\Arkanoi
 C:\Users\Дом\Desktop\Арка\Клиент\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
 C:\Users\Дом\Desktop\Арка\Клиент\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
 C:\Users\Дом\Desktop\Арка\Клиент\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+C:\Users\Дом\Desktop\Arkanoid\Client\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache

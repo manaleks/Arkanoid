@@ -320,22 +320,30 @@ namespace ArkanoidLast
             if (e.KeyCode == Keys.Space) // запуск мяча
                 ball.launched = true;
 
-            //перемещение ракетки racket1 с помощью стрелок
-            if (e.KeyCode == Keys.Left) racket1.isMovingLeft = true;
-            if (e.KeyCode == Keys.Right) racket1.isMovingRight = true;
+            if (e.KeyCode == Keys.Escape)   // Выход из игры
+                Environment.Exit(0);
 
-            //перемещение ракетки racket2 с помощью 'А' и 'D'
-            if (e.KeyCode == Keys.A) racket2.isMovingLeft = true;
-            if (e.KeyCode == Keys.D) racket2.isMovingRight = true;
+            /*     //перемещение ракетки racket1 с помощью стрелок
+                 if (e.KeyCode == Keys.Left) racket1.isMovingLeft = true;
+                 if (e.KeyCode == Keys.Right) racket1.isMovingRight = true;
+
+                 //перемещение ракетки racket2 с помощью 'А' и 'D'
+                 if (e.KeyCode == Keys.A) racket2.isMovingLeft = true;
+                 if (e.KeyCode == Keys.D) racket2.isMovingRight = true;*/
         }
 
         private void GameForm_KeyUp(object sender, KeyEventArgs e) // при отпускании клавиши происходит прекращение движений ракетки
         {
-            if (e.KeyCode == Keys.Left) racket1.isMovingLeft = false;
+       /*     if (e.KeyCode == Keys.Left) racket1.isMovingLeft = false;
             if (e.KeyCode == Keys.Right) racket1.isMovingRight = false;
 
             if (e.KeyCode == Keys.A) racket2.isMovingLeft = false;
-            if (e.KeyCode == Keys.D) racket2.isMovingRight = false;
+            if (e.KeyCode == Keys.D) racket2.isMovingRight = false;*/
+        }
+
+        private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void Restart_Click(object sender, EventArgs e) // загрузка новой игры

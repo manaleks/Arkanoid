@@ -13,7 +13,7 @@ namespace ArkanoidLast
     {
         public static int posTOP = 1000;
         public static int posDOWN = 1000;
-        public static bool work = true;
+        public static bool network = false;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -34,7 +34,6 @@ namespace ArkanoidLast
             myThread.Start(); //запускаем поток
 
             Application.Run(new GameForm());
-            work = false;
         }
     }
 }

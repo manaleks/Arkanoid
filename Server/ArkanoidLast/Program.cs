@@ -15,9 +15,7 @@ namespace ArkanoidLast
     {
         public static int posTOP = 1000;
         public static int posDOWN = 1000;
-        public static bool work = true;
-        // Назначаем сокет локальной конечной точке и слушаем входящие сокеты
-
+        public static bool network = false;
 
         static void GOOLIKErun()
         {
@@ -27,7 +25,6 @@ namespace ArkanoidLast
             myThread.Start(); //запускаем поток
 
             Application.Run(new GameForm());
-            work = false;
         }
 
         /// <summary>

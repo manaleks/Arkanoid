@@ -62,7 +62,7 @@
             // 
             this.leftSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.leftSideBar.Location = new System.Drawing.Point(0, 0);
-            this.leftSideBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.leftSideBar.Margin = new System.Windows.Forms.Padding(4);
             this.leftSideBar.Name = "leftSideBar";
             this.leftSideBar.Size = new System.Drawing.Size(227, 911);
             this.leftSideBar.TabIndex = 0;
@@ -72,7 +72,7 @@
             // 
             this.rightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rightSideBar.Location = new System.Drawing.Point(1336, 0);
-            this.rightSideBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rightSideBar.Margin = new System.Windows.Forms.Padding(4);
             this.rightSideBar.Name = "rightSideBar";
             this.rightSideBar.Size = new System.Drawing.Size(227, 911);
             this.rightSideBar.TabIndex = 1;
@@ -201,7 +201,7 @@
             this.startPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startPic.InitialImage = null;
             this.startPic.Location = new System.Drawing.Point(0, 0);
-            this.startPic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startPic.Margin = new System.Windows.Forms.Padding(4);
             this.startPic.Name = "startPic";
             this.startPic.Size = new System.Drawing.Size(1563, 838);
             this.startPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -227,12 +227,13 @@
             this.Controls.Add(this.rightSideBar);
             this.Controls.Add(this.leftSideBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GameForm";
             this.Text = "Arkanoid";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameForm_FormClosed);
             this.Load += new System.EventHandler(this.GameForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyUp);

@@ -117,7 +117,6 @@ namespace ArkanoidLast
         {
             movementTimer.Stop();
             scoreTimer.Stop();
-            Restart.Show();
             Cursor.Show();
 
             if (winner != "") 
@@ -193,7 +192,10 @@ namespace ArkanoidLast
             if (racket2.isMovingRight && racket2.Location.X + racket2.Size.Width < rightSideBar.Left)
                 racket2.moveRight();*/
 
-            racket1.Left = Program.posTOP - (racket1.Width / 2); // устанавливаем центр ракетки 1 на сервера
+            if(Program.network)
+                racket1.Left = Program.posTOP - (racket1.Width / 2); // устанавливаем центр ракетки 1 на сервера
+            else
+                racket1.Left = ball.Left + (ball.Width/2) - (racket1.Width / 2);
             racket2.Left = Cursor.Position.X - (racket1.Width / 2); // устанавливаем центр ракетки 2 на клиента
 
             // движение мяча, если он запущен
@@ -320,22 +322,30 @@ namespace ArkanoidLast
             if (e.KeyCode == Keys.Space) // запуск мяча
                 ball.launched = true;
 
-            //перемещение ракетки racket1 с помощью стрелок
-            if (e.KeyCode == Keys.Left) racket1.isMovingLeft = true;
-            if (e.KeyCode == Keys.Right) racket1.isMovingRight = true;
+            if (e.KeyCode == Keys.Escape)   // Выход из игры
+                Environment.Exit(0);
 
-            //перемещение ракетки racket2 с помощью 'А' и 'D'
-            if (e.KeyCode == Keys.A) racket2.isMovingLeft = true;
-            if (e.KeyCode == Keys.D) racket2.isMovingRight = true;
+            /*  //перемещение ракетки racket1 с помощью стрелок
+              if (e.KeyCode == Keys.Left) racket1.isMovingLeft = true;
+              if (e.KeyCode == Keys.Right) racket1.isMovingRight = true;
+
+              //перемещение ракетки racket2 с помощью 'А' и 'D'
+              if (e.KeyCode == Keys.A) racket2.isMovingLeft = true;
+              if (e.KeyCode == Keys.D) racket2.isMovingRight = true;*/
         }
 
         private void GameForm_KeyUp(object sender, KeyEventArgs e) // при отпускании клавиши происходит прекращение движений ракетки
         {
-            if (e.KeyCode == Keys.Left) racket1.isMovingLeft = false;
+           /* if (e.KeyCode == Keys.Left) racket1.isMovingLeft = false;
             if (e.KeyCode == Keys.Right) racket1.isMovingRight = false;
 
             if (e.KeyCode == Keys.A) racket2.isMovingLeft = false;
-            if (e.KeyCode == Keys.D) racket2.isMovingRight = false;
+            if (e.KeyCode == Keys.D) racket2.isMovingRight = false;*/
+        }
+
+        private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void Restart_Click(object sender, EventArgs e) // загрузка новой игры
@@ -373,7 +383,7 @@ namespace ArkanoidLast
             livesLabel.Left = rightSideBar.Left + 5;
             label3.Location = new Point(leftSideBar.Right + 5, this.Height - label3.Height-50);
             WinLabel.Left = this.Width / 2 - WinLabel.Width / 2 - 50;
-            Restart.Left = this.Width / 2 - Restart.Width / 2;
+            Restart.Left = this.Width / 2 - Restart.Width / 2 + 50;
         }
 
     }

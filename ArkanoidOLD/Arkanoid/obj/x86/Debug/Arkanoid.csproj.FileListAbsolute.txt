@@ -29,3 +29,5 @@ C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Debug\Arkanoid.csproj.Generate
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Debug\Arkanoid.csprojResolveAssemblyReference.cache
 C:\Users\Дом\Desktop\Арканоид\Arkanoid\Arkanoid\obj\x86\Debug\Arkanoid.exe
 C:\Users\Дом\Desktop\Арканоид\Arkanoid\Arkanoid\obj\x86\Debug\Arkanoid.pdb
+C:\Users\Дом\Desktop\Arkanoid\ArkanoidOLD\Arkanoid\obj\x86\Debug\Arkanoid.exe
+C:\Users\Дом\Desktop\Arkanoid\ArkanoidOLD\Arkanoid\obj\x86\Debug\Arkanoid.pdb

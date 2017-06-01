@@ -11,10 +11,14 @@ namespace ArkanoidLast
 {
     public class Client
     {
-        int clientPOS = 1000;
-
         public Client()
         {
+                        /* Проверка подходящих айпи-адресов
+            IPAddress[] addrs = Dns.GetHostAddresses(Dns.GetHostName());
+            foreach (IPAddress ip in addrs)
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                //    MessageBox.Show(ip.ToString());
+            */
         }
 
         public void ClientRun()
@@ -27,28 +31,14 @@ namespace ArkanoidLast
             {
                 MessageBox.Show(ex.ToString());
             }
-            finally
-            {
-                MessageBox.Show("Потеря сети");
-            }
         }
 
         void SendMessageFromSocket(int port)
         {
-            IPAddress[] addrs = Dns.GetHostAddresses(Dns.GetHostName());
-            foreach (IPAddress ip in addrs)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    while (Cursor.Position.X != 0 && Program.work == true)
+            while (Cursor.Position.X != 0)
                     {
-                        // Устанавливаем удаленную точку для сокета
                         byte[] bytes = new byte[1024];
-                        // Устанавливаем удаленную точку для сокета
-
-                        IPEndPoint ipEndPoint = new IPEndPoint(ip, 11001);
-
-                        // IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse("10.0.1.27"), 11001);
+                        IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse("10.0.1.27"), 11001);
                         Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                         // Соединяем сокет с удаленной точкой
@@ -61,11 +51,8 @@ namespace ArkanoidLast
                         // Получаем ответ от сервера
                         int bytesRec = sender.Receive(bytes);
 
-                        clientPOS = Convert.ToInt32(Encoding.UTF8.GetString(bytes, 0, bytesRec));
-
-                        Program.posDOWN = clientPOS;
-                    }
-                }
+                        Program.posDOWN = Convert.ToInt32(Encoding.UTF8.GetString(bytes, 0, bytesRec));
+                Program.network = true;
             }
         }
     }
