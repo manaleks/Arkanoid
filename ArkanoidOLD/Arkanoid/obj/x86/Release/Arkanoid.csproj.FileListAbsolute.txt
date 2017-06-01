@@ -1,0 +1,7 @@
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\bin\Release\Arkanoid.exe
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\bin\Release\Arkanoid.pdb
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Release\Arkanoid.Form1.resources
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Release\Arkanoid.Properties.Resources.resources
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Release\Arkanoid.csproj.GenerateResource.Cache
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Release\Arkanoid.exe
+C:\Users\Дом\Desktop\Arkanoid\Arkanoid\obj\x86\Release\Arkanoid.pdb
