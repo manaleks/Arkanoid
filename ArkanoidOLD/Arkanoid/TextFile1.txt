@@ -1,0 +1,152 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Net;
+
+namespace Arkanoid
+{
+    public partial class Form1 : Form
+    {
+        public int speed_horizon = 4; // скорость шара
+        public int speed_vertical = 4;
+        public int points = 0; // набранные баллы
+
+        public int racket = 0;
+
+        public Form1()
+        {
+            InitializeComponent();
+            GetAllIPS();
+
+            timer1.Enabled = true;
+            Cursor.Hide();
+            this.FormBorderStyle = FormBorderStyle.None;
+      //      this.TopMost = true; // на передний план
+            this.Bounds = Screen.PrimaryScreen.Bounds; // полноэкранный режим (задаем границы по размеру экрана)
+
+            racket1.Top = playground.Bottom - (playground.Bottom / 10); // устанавливаем позицию первой ракетки
+            racket2.Top = playground.Top + (playground.Bottom / 10); // устанавливаем позицию первой ракетки
+
+            gameover_lbl.Left = (playground.Width / 2) - (gameover_lbl.Width / 2);
+            gameover_lbl.Top = (playground.Height/2) - (gameover_lbl.Height/2);
+            gameover_lbl.Visible = false;
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            label1.Text = "Скорость лефт: " + speed_horizon + "\nСкорость топ: " + speed_vertical + "\n\n";
+
+            racket1.Left = Cursor.Position.X - (racket1.Width / 2); // устанавливаем курсор в центр ракетки
+            racket2.Left = Cursor.Position.X - (racket1.Width / 2); // устанавливаем курсор в центр ракетки
+            
+            ball.Left += speed_horizon;
+            ball.Top += speed_vertical;
+
+            if (ball.Bottom >= racket1.Top && ball.Bottom <= racket1.Bottom && ball.Right >= racket1.Left && ball.Left <= racket1.Right)// столкновение с ракеткой
+            {
+                // если сделан пас от второй ракетки
+                if (racket != 1)
+                {
+                    speed_vertical += 2;
+                    speed_horizon += 2;
+
+                    if (ball.Right > racket1.Left + 100)
+                        speed_horizon = -speed_horizon;
+
+                    if (ball.Left < racket1.Left + 100)
+                        speed_horizon = -speed_horizon;
+
+                    speed_vertical = -speed_vertical; // изменяем направление
+                    points += 1;
+                    points_lbl.Text = points.ToString();
+                }
+                racket = 1;
+            }
+
+            if (ball.Bottom >= racket2.Top && ball.Top <= racket2.Bottom && ball.Right >= racket2.Left && ball.Left <= racket2.Right)// столкновение с ракеткой
+            {
+                // если сделан пас от первой ракетки
+                if (racket != 2)
+                {
+                    speed_vertical += 2;
+                    speed_horizon += 2;
+                    speed_vertical = -speed_vertical; // изменяем направление
+                    points += 1;
+                    points_lbl.Text = points.ToString();
+
+                }
+                racket = 2;
+            }
+
+            if (ball.Left <= playground.Left || ball.Right >= playground.Right)
+            {
+                speed_horizon = -speed_horizon;
+            }
+
+            if (ball.Bottom >= playground.Bottom || ball.Top <= playground.Top)
+            {
+                timer1.Enabled = false; // шар вылетел, игра закончилась
+                gameover_lbl.Visible = true;
+            }
+        }
+
+       void GetAllIPS(string args = "")
+        {
+            string strHostName = String.Empty;
+            if (args.Length == 0)
+            {
+                strHostName = Dns.GetHostName();
+                label2.Text = "Local Machines' Host Name:" + strHostName;
+            }
+            else
+            {
+                strHostName = args;
+            }
+            IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
+            IPAddress[] addr = ipEntry.AddressList;
+            for (int i = 0; i < addr.Length; i++)
+            {
+                label2.Text += "\nIP Address " + i + ": " + addr[i].ToString() + "\n" ;
+            }
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
+            if (e.KeyCode == Keys.F1) // новая игра
+            {
+                ball.Top = 50;
+                ball.Left = 50;
+                speed_horizon = 4;
+                speed_vertical = 4;
+                points = 0;
+                points_lbl.Text = "0";
+                timer1.Enabled = true;
+                gameover_lbl.Visible = false;
+                racket = 0;
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                racket2.Left -= 50; // устанавливаем курсор в центр ракетки
+                points -= 1;
+                points_lbl.Text = points.ToString();
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                racket2.Left += 50; // устанавливаем курсор в центр ракетки
+                points += 1;
+                points_lbl.Text = points.ToString();
+            }
+
+        }
+
+    }
+}
