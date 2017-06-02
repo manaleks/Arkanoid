@@ -37,7 +37,7 @@ namespace ArkanoidLast
                 {
                     // Программа приостанавливается, ожидая входящее соединение
                     Socket handler = sListener.Accept();
-                    
+
                     // Мы дождались клиента, пытающегося с нами соединиться
                     byte[] bytes = new byte[1024];
                     int bytesRec = handler.Receive(bytes);
@@ -59,6 +59,10 @@ namespace ArkanoidLast
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                Program.network = false;
             }
         }
     }

@@ -193,10 +193,10 @@ namespace ArkanoidLast
                 racket2.moveRight();*/
 
             if(Program.network)
-                racket1.Left = Program.posTOP - (racket1.Width / 2); // устанавливаем центр ракетки 1 на сервера
+                racket1.Left = Program.posTOP - (racket1.Width / 2); // устанавливаем центр ракетки 1 на курсор сервера
             else
-                racket1.Left = ball.Left + (ball.Width/2) - (racket1.Width / 2);
-            racket2.Left = Cursor.Position.X - (racket1.Width / 2); // устанавливаем центр ракетки 2 на клиента
+                racket1.Left = ball.Left + (ball.Width/2) - (racket1.Width / 2); 
+            racket2.Left = Cursor.Position.X - (racket2.Width / 2); // устанавливаем центр ракетки 2 на курсор клиента
 
             // движение мяча, если он запущен
             if (ball.launched)

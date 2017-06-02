@@ -18,7 +18,7 @@ namespace ArkanoidLast
         // Статистика
         int livesRacket1, livesRacket2;
         int scoreRacket1, scoreRacket2;
-        int leader = 2; // ведущий - тот, кто последний отбил мяч  (1 - racket1, 2 - racket2)
+        int leader = 1; // ведущий - тот, кто последний отбил мяч  (1 - racket1, 2 - racket2)
         string winner = "";
 
         // Основные элементы (ракетки, мяч, блоки)
@@ -137,7 +137,8 @@ namespace ArkanoidLast
         private void createNewBall() // создаем новый мяч и устанавливаем в середину ракетки
         {
             ball = new Ball();
-
+            if (Program.network)
+                leader = 1;
             switch (leader)
             {
                 case 1:
@@ -155,6 +156,7 @@ namespace ArkanoidLast
                         break;
                     }
             }
+            
 
             Controls.Add(ball);
         }
@@ -194,7 +196,11 @@ namespace ArkanoidLast
                      racket2.moveRight();*/
 
             racket1.Left = Cursor.Position.X - (racket1.Width / 2); // устанавливаем центр ракетки 1 на курсор сервера
-            racket2.Left = Program.posDOWN - (racket1.Width / 2); // устанавливаем центр ракетки 2 на курсор клиента
+           
+            if (Program.network)
+                racket2.Left = Program.posDOWN - (racket2.Width / 2); // устанавливаем центр ракетки 2 на курсор клиента
+            else
+                racket2.Left = ball.Left + (ball.Width / 2) - (racket2.Width / 2);
 
             // движение мяча, если он запущен
             if (ball.launched)

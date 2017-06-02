@@ -31,6 +31,10 @@ namespace ArkanoidLast
             {
                 MessageBox.Show(ex.ToString());
             }
+            finally
+            {
+                Program.network = false;
+            }
         }
 
         void SendMessageFromSocket(int port)
