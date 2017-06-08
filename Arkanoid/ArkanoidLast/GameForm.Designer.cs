@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.startPic = new System.Windows.Forms.PictureBox();
+            this.ExitLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.leftSideBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightSideBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startPic)).BeginInit();
@@ -108,7 +109,7 @@
             this.Restart.ForeColor = System.Drawing.Color.Yellow;
             this.Restart.Location = new System.Drawing.Point(550, 400);
             this.Restart.Name = "Restart";
-            this.Restart.Size = new System.Drawing.Size(127, 39);
+            this.Restart.Size = new System.Drawing.Size(126, 39);
             this.Restart.TabIndex = 5;
             this.Restart.Text = "RESTART";
             this.Restart.Click += new System.EventHandler(this.Restart_Click);
@@ -142,11 +143,11 @@
             // 
             this.gameName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gameName.AutoSize = true;
-            this.gameName.Font = new System.Drawing.Font("Microsoft Sans Serif", 71.99999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameName.Font = new System.Drawing.Font("Tele-Marines", 71.99999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameName.ForeColor = System.Drawing.Color.DarkCyan;
             this.gameName.Location = new System.Drawing.Point(190, 230);
             this.gameName.Name = "gameName";
-            this.gameName.Size = new System.Drawing.Size(546, 108);
+            this.gameName.Size = new System.Drawing.Size(806, 88);
             this.gameName.TabIndex = 11;
             this.gameName.Text = "ARKANOID";
             // 
@@ -158,7 +159,7 @@
             this.startLabel.ForeColor = System.Drawing.Color.Maroon;
             this.startLabel.Location = new System.Drawing.Point(484, 474);
             this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(256, 60);
+            this.startLabel.Size = new System.Drawing.Size(254, 60);
             this.startLabel.TabIndex = 12;
             this.startLabel.Text = "START GAME";
             this.startLabel.Click += new System.EventHandler(this.startLabel_Click);
@@ -170,7 +171,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(175, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 23);
+            this.label2.Size = new System.Drawing.Size(72, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "PLAYER2";
             // 
@@ -181,7 +182,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(175, 645);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 23);
+            this.label3.Size = new System.Drawing.Size(69, 23);
             this.label3.TabIndex = 14;
             this.label3.Text = "PLAYER1";
             // 
@@ -196,12 +197,24 @@
             this.startPic.TabIndex = 13;
             this.startPic.TabStop = false;
             // 
+            // ExitLbl
+            // 
+            this.ExitLbl.AutoSize = true;
+            this.ExitLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExitLbl.ForeColor = System.Drawing.Color.White;
+            this.ExitLbl.Location = new System.Drawing.Point(551, 556);
+            this.ExitLbl.Name = "ExitLbl";
+            this.ExitLbl.Size = new System.Drawing.Size(139, 33);
+            this.ExitLbl.TabIndex = 15;
+            this.ExitLbl.Text = "Esc - Exit";
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1172, 681);
+            this.Controls.Add(this.ExitLbl);
             this.Controls.Add(this.startLabel);
             this.Controls.Add(this.gameName);
             this.Controls.Add(this.startPic);
@@ -214,7 +227,7 @@
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.rightSideBar);
             this.Controls.Add(this.leftSideBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GameForm";
@@ -249,6 +262,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox startPic;
+        private System.Windows.Forms.Label ExitLbl;
         
     }
 }
