@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ArkanoidLast
@@ -23,23 +24,37 @@ namespace ArkanoidLast
         string winner = "";
 
         // Основные элементы (ракетки, мяч, блоки)
-        Racket racket1, racket2;
+        Racket racketBOTTOM, racketTOP;
         Ball ball;
         List<Block> blocks; // список активных (неуничтоженных) блоков
 
-        bool isItServ;
+        ArkaSocket arkaSocket; // точка соединения с другим приложением.
 
+        int LastCursor;     // Для определения потери сети в режиме сервера
+
+        /// <summary>
+        /// Конструктор для игры с компьютером
+        /// </summary>
         public GameForm()
         {
             InitializeComponent();
             createLevel(); // загружаем схему уровня
         }
 
-        public void getControlScreenshot(Control c)
+        /// <summary>
+        /// Конструктор для игры по сети
+        /// </summary>
+        /// <param name="isItServ">Является ли компьютер сервером</param>
+        public GameForm(bool isItServ)
         {
-          Bitmap res = new Bitmap(c.Width, c.Height);
-          c.DrawToBitmap(res, new Rectangle(Point.Empty, c.Size));
-          Program.arkaSocket.scr = res;
+            arkaSocket = new ArkaSocket(isItServ);  // создание сокета: сервера или клиента
+            if (isItServ)
+                new Thread(arkaSocket.ServerRun).Start();   // запуск потока сервера
+            else
+                new Thread(arkaSocket.ClientRun).Start();  // запуск потока клиента
+
+            InitializeComponent();
+            createLevel(); // загружаем схему уровня
         }
 
         private void createLevel()
@@ -97,9 +112,10 @@ namespace ArkanoidLast
 
         private void startGame()
         {
+            currentLevel = arkaSocket.currentLevel;
             WinLabel.Hide();
             Restart.Hide();
-     //       Cursor.Hide();
+            Cursor.Hide();
 
             livesRacket1 = 3;
             livesRacket2 = 3;
@@ -108,12 +124,23 @@ namespace ArkanoidLast
 
             createBlocks();
 
-            racket1 = new Racket(this, true);
-            racket2 = new Racket(this, false);
+            racketBOTTOM = new Racket(this, true);
+            racketTOP = new Racket(this, false);
 
-            Controls.Add(racket1);
-            Controls.Add(racket2);
+            Controls.Add(racketBOTTOM);
+            Controls.Add(racketTOP);
             createNewBall();
+
+            string[] delIndexMas = arkaSocket.blocksToDel.Split('.');
+            foreach (string i in delIndexMas)
+            {
+                if (i != "")
+                {
+                    Controls.Remove(blocks[Convert.ToInt32(i)]);
+                    blocks.RemoveAt(Convert.ToInt32(i));
+                }
+            }
+
 
             movementTimer.Start();
             scoreTimer.Start();
@@ -148,15 +175,15 @@ namespace ArkanoidLast
                 case 1:
                     {
                         ball.Location = new Point(
-                            racket1.Location.X + racket1.Size.Width / 2 - ball.Size.Width / 2,
-                            racket1.Location.Y - ball.Size.Height);
+                            racketBOTTOM.Location.X + racketBOTTOM.Size.Width / 2 - ball.Size.Width / 2,
+                            racketBOTTOM.Location.Y - ball.Size.Height);
                         break;
                     }
                 case 2:
                     {
                         ball.Location = new Point(
-                            racket2.Location.X + racket2.Size.Width / 2 - ball.Size.Width / 2,
-                            racket2.Location.Y + ball.Size.Height);
+                            racketTOP.Location.X + racketTOP.Size.Width / 2 - ball.Size.Width / 2,
+                            racketTOP.Location.Y + ball.Size.Height);
                         break;
                     }
             }
@@ -186,45 +213,87 @@ namespace ArkanoidLast
         }
 
         private void movementTimer_Tick(object sender, EventArgs e)
-        {
-            if (isItServ == true)
-            {
-                // Управляем движением ракеток
-                if (Program.arkaSocket.network)
-                    racket1.Left = Program.arkaSocket.posTOP - (racket1.Width / 2); // устанавливаем центр ракетки 1 на курсор сервера
+        {   
+            // Если работает форма сервера
+            if (arkaSocket.isItServ)
+            {   
+                // если идёт сетевая игра
+                if (arkaSocket.network)
+                {
+                    // Проверяем активность клиента
+                    if (arkaSocket.clientCursor == LastCursor)
+                        arkaSocket.standCount++;
+                    else
+                        arkaSocket.standCount = 0;
+
+                    if(arkaSocket.standCount > 50)
+                    {
+                        arkaSocket.standCount = 0;
+                        arkaSocket.network = false;
+                    }
+
+                    // Управляем движением ракеток
+                    // ракетка клиента:
+                    // когда курсор внутри поля
+                    if (arkaSocket.clientCursor > leftSideBar.Right && arkaSocket.clientCursor < rightSideBar.Left)
+                    {
+                        arkaSocket.posBOTTOM = arkaSocket.clientCursor - (racketBOTTOM.Width / 2);
+                        racketBOTTOM.Left = arkaSocket.posBOTTOM;
+                    }
+                    // когда курсор справа от поля
+                    if (arkaSocket.clientCursor > rightSideBar.Left)
+                    {
+                        arkaSocket.posBOTTOM = rightSideBar.Left - racketBOTTOM.Width / 2;
+                        racketBOTTOM.Left = arkaSocket.posBOTTOM;
+                    }
+                    //когда курсор слева от поля
+                    if (arkaSocket.clientCursor < leftSideBar.Right)
+                    {
+                        arkaSocket.posBOTTOM = leftSideBar.Right - racketBOTTOM.Width / 2;
+                        racketBOTTOM.Left = arkaSocket.posBOTTOM;
+                    }
+                }
                 else
-                    racket1.Left = ball.Left + (ball.Width / 2) - (racket1.Width / 2);
+                    racketBOTTOM.Left = ball.Left + (ball.Width / 2) - (racketBOTTOM.Width / 2);
+
+                // Ракетка сервера:
+                // когда курсор внутри поля
                 if (Cursor.Position.X > leftSideBar.Right && Cursor.Position.X < rightSideBar.Left)
-                    racket2.Left = Cursor.Position.X - (racket2.Width / 2); // устанавливаем центр ракетки 2 на курсор клиента
-
+                {
+                    arkaSocket.posTOP = Cursor.Position.X - (racketTOP.Width / 2);
+                    racketTOP.Left = arkaSocket.posTOP;
+                }
+                // когда курсор справа от поля
                 if (Cursor.Position.X > rightSideBar.Left)
-                    racket2.Left = rightSideBar.Left - racket2.Width / 2; // устанавливаем центр ракетки 2 на курсор клиента
-
+                {
+                    arkaSocket.posTOP = rightSideBar.Left - racketTOP.Width / 2;
+                    racketTOP.Left = arkaSocket.posTOP; 
+                }
+                //когда курсор слева от поля
                 if (Cursor.Position.X < leftSideBar.Right)
-                    racket2.Left = leftSideBar.Right - racket2.Width / 2; // устанавливаем центр ракетки 2 на курсор клиента
+                {
+                    arkaSocket.posTOP = leftSideBar.Right - racketTOP.Width / 2;
+                    racketTOP.Left = arkaSocket.posTOP; 
+                }
 
 
                 // движение мяча, если он запущен
                 if (ball.launched)
-                {
                     ball.move();
-                }
                 else // иначе, мяч находится на ракетке ведущего
-                {
                     switch (leader)
                     {
                         case 1:
                             {
-                                ball.Location = new Point(racket1.Location.X + racket1.Size.Width / 2 - ball.Size.Width / 2, racket1.Location.Y - ball.Size.Height);
+                                ball.Location = new Point(racketBOTTOM.Location.X + racketBOTTOM.Size.Width / 2 - ball.Size.Width / 2, racketBOTTOM.Location.Y - ball.Size.Height);
                                 break;
                             }
                         case 2:
                             {
-                                ball.Location = new Point(racket2.Location.X + racket2.Size.Width / 2 - ball.Size.Width / 2, racket2.Location.Y + ball.Size.Height + 1);
+                                ball.Location = new Point(racketTOP.Location.X + racketTOP.Size.Width / 2 - ball.Size.Width / 2, racketTOP.Location.Y + ball.Size.Height + 1);
                                 break;
                             }
                     }
-                }
 
                 // Столкновение с блоком
                 for (int i = 0; i < blocks.Count; i++)
@@ -247,14 +316,14 @@ namespace ArkanoidLast
                                 }
                             case 'S':
                                 {
-                                    if (leader == 1) racket1.upgradeSize();
-                                    else racket2.upgradeSize();
+                                    if (leader == 1) racketBOTTOM.upgradeSize();
+                                    else racketTOP.upgradeSize();
                                 }
                                 break;
                         }
                         Controls.Remove(blocks[i]);
                         blocks.RemoveAt(i);
-                        Program.arkaSocket.blockDel = i;
+                        arkaSocket.blocksToDel += i + ".";
 
                         // засчитываем баллы ведущему
                         if (leader == 1) scoreRacket1 += 50;
@@ -269,8 +338,8 @@ namespace ArkanoidLast
                 }
 
                 // Столкновение с ракеткой и определение ведущего
-                if (ball.collision(racket1)) leader = 1;
-                if (ball.collision(racket2)) leader = 2;
+                if (ball.collision(racketBOTTOM)) leader = 1;
+                if (ball.collision(racketTOP)) leader = 2;
 
                 // Столкновение с левым или правым краем игрового поля => отражение мяча по горизонтали
                 if (ball.Location.X <= leftSideBar.Right || ball.Location.X + ball.Size.Width >= rightSideBar.Left)
@@ -311,39 +380,60 @@ namespace ArkanoidLast
                         endGame();
                     }
                 }
+
+                // Записываем данные для отправки клиенту.
+                arkaSocket.ballY = ball.Location.Y;
+                arkaSocket.ballX = ball.Location.X;
+
+                arkaSocket.widthBOTTOM = racketBOTTOM.Width;
+                arkaSocket.widthTOP = racketTOP.Width;
+
+                arkaSocket.scoreBOTTOM = scoreRacket1;
+                    arkaSocket.scoreTOP = scoreRacket2;
+                arkaSocket.lifesBOTTOM = livesRacket1;
+                  arkaSocket.lifesTOP = livesRacket2;
+
                 // Выводим результаты
                 scoreLabel.Text = "SCORE\n\nPLAYER1\n" + scoreRacket1 + "\nPLAYER2\n" + scoreRacket2;
                 livesLabel.Text = "LIVES\n\nPLAYER1\n" + livesRacket1 + "\nPLAYER2\n" + livesRacket2;
+                if(arkaSocket.network)
+                    modeLbl.Text = "PvP";
+                else
+                    modeLbl.Text = "PvE";
 
-                // Записываем данные для отправки клиенту.
-                Program.arkaSocket.ballY = ball.Location.Y;
-                Program.arkaSocket.ballX = ball.Location.X;
-                Program.arkaSocket.posTOP = Cursor.Position.X;
-
-
-                //     getControlScreenshot(this);
+                LastCursor = arkaSocket.clientCursor;
             }
             else
             {
-                //     pbGame.Image = (Image)Program.scr;
-                racket1.Left = Cursor.Position.X - (racket1.Width / 2); // устанавливаем центр ракетки 1 на курсор сервера
+                arkaSocket.clientCursor = Cursor.Position.X;    // Отсылаем курсор пользователя.
 
-                if (Program.arkaSocket.network)
-                    racket2.Left = Program.arkaSocket.posTOP - (racket2.Width / 2); // устанавливаем центр ракетки 2 на курсор клиента
+                racketBOTTOM.Left = arkaSocket.posBOTTOM; // устанавливаем центр нижней ракетки на курсор клиента
+
+                // Отображаем верхнюю ракетку
+                if (arkaSocket.network)
+                    racketTOP.Left = arkaSocket.posTOP; // устанавливаем центр ракетки 2 на курсор клиента
                 else
-                    racket2.Left = ball.Left + (ball.Width / 2) - (racket2.Width / 2);
+                    racketTOP.Left = ball.Left + (ball.Width / 2) - (racketTOP.Width / 2);
 
-                if (Program.arkaSocket.network)
-                {
-                    ball.Location = new Point(Program.arkaSocket.ballX, Program.arkaSocket.ballY);
-                }
+                if (arkaSocket.network)
+                    ball.Location = new Point(arkaSocket.ballX, arkaSocket.ballY);
 
-                if (Program.arkaSocket.blockDel != -1)
-                {
-                    Controls.Remove(blocks[Program.arkaSocket.blockDel]);
-                    blocks.RemoveAt(Program.arkaSocket.blockDel);
-                    Program.arkaSocket.blockDel = -1;
-                }
+                for (int i = 0; i < blocks.Count; i++)
+                    if (ball.collision(blocks[i]))
+                    {
+                        Controls.Remove(blocks[i]);
+                        blocks.RemoveAt(i);
+                    }
+
+                        racketTOP.Width = arkaSocket.widthTOP;
+                racketBOTTOM.Width = arkaSocket.widthBOTTOM;
+
+                scoreLabel.Text = "SCORE\n\nPLAYER1\n" + arkaSocket.scoreBOTTOM + "\nPLAYER2\n" + arkaSocket.scoreTOP;
+                livesLabel.Text = "LIVES\n\nPLAYER1\n" + arkaSocket.lifesBOTTOM + "\nPLAYER2\n" + arkaSocket.lifesTOP;
+                if (arkaSocket.network)
+                    modeLbl.Text = "PvP";
+                else
+                    modeLbl.Text = "PvE";
             }
         }
 
@@ -356,19 +446,21 @@ namespace ArkanoidLast
 
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space) // запуск мяча
+            if (Controls.Contains(ball) && e.KeyCode == Keys.Space) // запуск мяча
                 ball.launched = true;
 
             if (e.KeyCode == Keys.Escape)   // Выход из игры
+            {
+                arkaSocket.work = false;
+                Thread.Sleep(1000);
                 Environment.Exit(0);
-        }
-
-        private void GameForm_KeyUp(object sender, KeyEventArgs e) // при отпускании клавиши происходит прекращение движений ракетки
-        {
+            }
         }
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            arkaSocket.work = false;
+            Thread.Sleep(1000);
             Environment.Exit(0);
         }
 
@@ -378,8 +470,8 @@ namespace ArkanoidLast
             Restart.Hide();
 
             Controls.Remove(ball);
-            Controls.Remove(racket1);
-            Controls.Remove(racket2);
+            Controls.Remove(racketBOTTOM);
+            Controls.Remove(racketTOP);
             foreach (Block b in blocks) Controls.Remove(b);
             blocks.Clear();
             livesLabel.Show();
@@ -392,6 +484,8 @@ namespace ArkanoidLast
             startLabel.Hide();
             gameName.Hide();
             startPic.Hide();
+            ExitLbl.Left = 10;
+            ExitLbl.BackColor = Color.FromArgb(64,64,64);
 
             startGame();
         }
@@ -399,22 +493,17 @@ namespace ArkanoidLast
         private void GameForm_Load(object sender, EventArgs e)
         {
             gameName.Location = new Point(this.Width / 2 - gameName.Width / 2, this.Height / 2 - gameName.Height);
-            startLabel.Location = new Point(this.Width / 2 - startLabel.Width / 2, gameName.Location.Y + gameName.Height + 30);
+            startLabel.Location = new Point(this.Width / 2 - startLabel.Width / 2, gameName.Bottom + 30);
+            ExitLbl.Location = new Point(this.Width / 2 - ExitLbl.Width / 2, startLabel.Bottom + 30);
             rightSideBar.Left = this.Width - 175;
             leftSideBar.Height = this.Height;
             rightSideBar.Height = this.Width;
             scoreLabel.Left = rightSideBar.Left + 5;
             livesLabel.Left = rightSideBar.Left + 5;
             label3.Location = new Point(leftSideBar.Right + 5, this.Height - label3.Height-50);
+            
             WinLabel.Location = new Point(this.Width / 2 - WinLabel.Width / 2 - 50, this.Height / 2 - WinLabel.Height);
             Restart.Location = new Point(this.Width / 2 - Restart.Width / 2, WinLabel.Location.Y + WinLabel.Height + 30);
-
-            isItServ = Program.arkaSocket.isItServ;
         }
-
-        private void GameForm_MouseMove(object sender, MouseEventArgs e)
-        {
-        }
-
     }
 }

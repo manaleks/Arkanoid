@@ -9,25 +9,16 @@ using System.Threading;
 using System.Windows.Forms;
 
 
-
 namespace ArkanoidLast
 {
     static class Program
     {
-        public static ArkaSocket arkaSocket = new ArkaSocket();
-        public static ArkaSocket arkaSocket2 = new ArkaSocket();
-
-        static void DobleRun()
+        /// <summary>
+        /// метод для создания и запуска формы с сервером
+        /// </summary>
+        static void formServRUN()
         {
-            Thread myThreadServ = new Thread(arkaSocket.ServerRun); //Создаем новый объект потока (Thread)
-            myThreadServ.Start(); //запускаем поток
-
-            Thread.Sleep(50);  // немного ждём, чтобы сервер с формой правильно прогрузились
-
-            Thread myThreadClient = new Thread(arkaSocket.ClientSend); //Создаем новый объект потока (Thread)
-            myThreadClient.Start(); //запускаем поток
-                
-            Application.Run(new GameForm());
+            Application.Run(new GameForm(true));
         }
 
         /// <summary>
@@ -39,13 +30,13 @@ namespace ArkanoidLast
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+           // new Thread(formServRUN).Start();   // создаём и запускаем форму сервера в отдельном потоке
 
-            //  Thread myThread = new Thread(serv.ServerRun); //Создаем новый объект потока (Thread)
-            Thread myThread = new Thread(DobleRun); //Создаем новый объект потока (Thread)
-            myThread.Start(); //запускаем поток
+           // Thread.Sleep(1000);     // ждём уверенную прогрузку сервера
 
-            Application.Run(new GameForm());
+            Application.Run(new GameForm(false));   // создаём и запускаем форму клиента
 
         }
     }
 }
+
