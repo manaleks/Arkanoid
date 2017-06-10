@@ -20,7 +20,7 @@ namespace ArkanoidLast
         public int posBOTTOM = 1000;
         public int ballY;
         public int ballX;
-        public int currentLevel = 2;
+        public int currentLevel = 3;
         public int clientCursor;
         public int scoreBOTTOM;
         public int scoreTOP;
@@ -44,7 +44,7 @@ namespace ArkanoidLast
         {
             this.isItServ = isItServ;
 
-           /*            //  Проверка подходящих айпи-адресов
+          /*             //  Проверка подходящих айпи-адресов
             IPAddress[] addrs = Dns.GetHostAddresses(Dns.GetHostName());
             foreach (IPAddress ip in addrs)
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
