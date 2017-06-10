@@ -151,12 +151,12 @@
             // 
             this.gameName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.gameName.AutoSize = true;
-            this.gameName.Font = new System.Drawing.Font("Microsoft Sans Serif", 71.99999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameName.Font = new System.Drawing.Font("MS Reference Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gameName.ForeColor = System.Drawing.Color.DarkCyan;
             this.gameName.Location = new System.Drawing.Point(253, 283);
             this.gameName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gameName.Name = "gameName";
-            this.gameName.Size = new System.Drawing.Size(684, 135);
+            this.gameName.Size = new System.Drawing.Size(719, 147);
             this.gameName.TabIndex = 11;
             this.gameName.Text = "ARKANOID";
             // 

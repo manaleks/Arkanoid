@@ -27,8 +27,8 @@ namespace ArkanoidLast
         Racket racketBOTTOM, racketTOP;
         Ball ball;
         List<Block> blocks; // список активных (неуничтоженных) блоков
-
-        ArkaSocket arkaSocket; // точка соединения с другим приложением.
+         
+        ArkaSocket arkaSocket = new ArkaSocket(); // точка соединения с другим приложением.
 
         int LastCursor;     // Для определения потери сети в режиме сервера
 
@@ -47,14 +47,18 @@ namespace ArkanoidLast
         /// <param name="isItServ">Является ли компьютер сервером</param>
         public GameForm(bool isItServ)
         {
+            ThreadRun(isItServ);
+            InitializeComponent();
+            createLevel(); // загружаем схему уровня
+        }
+
+        void ThreadRun(bool isItServ)
+        {
             arkaSocket = new ArkaSocket(isItServ);  // создание сокета: сервера или клиента
             if (isItServ)
                 new Thread(arkaSocket.ServerRun).Start();   // запуск потока сервера
             else
                 new Thread(arkaSocket.ClientRun).Start();  // запуск потока клиента
-
-            InitializeComponent();
-            createLevel(); // загружаем схему уровня
         }
 
         private void createLevel()
@@ -107,6 +111,18 @@ namespace ArkanoidLast
                     {' ',' ',' ',' ',' ',' ','S','3',' ','3','S',' ',' ',' ',' ',' ',' '},
                     {' ',' ',' ',' ',' ',' ','3','3',' ','3','3',' ',' ',' ',' ',' ',' '},
                 },
+new char[10, 10] {
+{' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+{' ',' ',' ',' ',' ','S',' ',' ',' ',' '},
+{' ',' ',' ',' ',' ','3',' ',' ',' ',' '},
+{' ',' ',' ',' ',' ',' ','3',' ',' ',' '},
+{' ',' ',' ',' ',' ',' ','3',' ',' ',' '},
+{' ',' ',' ',' ',' ','B','2','2','B','2'},
+{' ',' ',' ',' ',' ','2','1','1','1','1'},
+{' ',' ',' ',' ','2','1','3','1','1','1'},
+{' ',' ',' ',' ','B','1','S','1','1','1'},
+{' ',' ',' ','2','4','1','1','1','1','1'},
+},
             };
         }
 
@@ -351,6 +367,8 @@ namespace ArkanoidLast
                     Controls.Remove(ball);
                     livesRacket2--;
                     leader = ((leader == 1) ? 2 : 1);
+                    if (!arkaSocket.network)
+                        leader = 2;
                     if (livesRacket2 > 0)
                     {
                         createNewBall();
@@ -452,7 +470,7 @@ namespace ArkanoidLast
             if (e.KeyCode == Keys.Escape)   // Выход из игры
             {
                 arkaSocket.work = false;
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
                 Environment.Exit(0);
             }
         }
@@ -460,7 +478,7 @@ namespace ArkanoidLast
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             arkaSocket.work = false;
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             Environment.Exit(0);
         }
 
@@ -475,6 +493,7 @@ namespace ArkanoidLast
             foreach (Block b in blocks) Controls.Remove(b);
             blocks.Clear();
             livesLabel.Show();
+            arkaSocket.blocksToDel = "";
 
             startGame();
         }

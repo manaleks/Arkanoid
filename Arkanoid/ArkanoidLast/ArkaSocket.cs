@@ -15,12 +15,12 @@ namespace ArkanoidLast
 {
     public class ArkaSocket
     {
-        public bool isItServ;
+        public bool isItServ = true;
         public int posTOP = 1000;
         public int posBOTTOM = 1000;
         public int ballY;
         public int ballX;
-        public int currentLevel = 1;
+        public int currentLevel = 2;
         public int clientCursor;
         public int scoreBOTTOM;
         public int scoreTOP;
@@ -34,6 +34,11 @@ namespace ArkanoidLast
         public bool work = true;
 
         public bool network = false;
+
+        public ArkaSocket()
+        {
+
+        }
 
         public ArkaSocket(bool isItServ)
         {
