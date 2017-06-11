@@ -93,8 +93,6 @@ C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLas
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
-C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe.CodeAnalysisLog.xml
-C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe.lastcodeanalysissucceeded
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
@@ -102,3 +100,81 @@ C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLas
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
 C:\Users\Дом\Desktop\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+D:\Arkanoid\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+D:\Arkanoid\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+D:\Arkanoid\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+C:\Users\Дом\Desktop\Новая папка\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+F:\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+F:\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+F:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+C:\Users\student.KSTUEDU\Desktop\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+E:\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+E:\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+E:\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csprojResolveAssemblyReference.cache
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+C:\Users\Дом\Desktop\Ark\Арк\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.csproj.GenerateResource.Cache
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.exe
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.pdb
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.exe
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\bin\Debug\ArkanoidLast.pdb
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Ball.resources
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Block.resources
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.GameForm.resources
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Properties.Resources.resources
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\ArkanoidLast.Racket.resources
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\student.KSTUEDU\Desktop\Arkanoid-dev\Arkanoid\ArkanoidLast\obj\x86\Debug\GenerateResource.write.1.tlog
